@@ -41,7 +41,7 @@ def save_grid_to_file(grid, filename):
 def main():
     # Check command-line arguments
     if len(sys.argv) != 6:
-        print("Usage: python script.py grid_width grid_height number_of_patches patch_width patch_height")
+        print("Usage: python gen.py grid_width grid_height number_of_patches patch_width patch_height")
         sys.exit(1)
     
     # Parse command-line arguments
@@ -56,8 +56,8 @@ def main():
         sys.exit(1)
     
     # Validate dimensions
-    if not (1 <= grid_width <= 9 and 1 <= grid_height <= 9):
-        print("Grid width and height must be integers between 1 and 9.")
+    if not (1 <= grid_width <= 16 and 1 <= grid_height <= 16):
+        print("Grid width and height must be integers between 1 and 16.")
         sys.exit(1)
     if not (1 <= patch_width <= grid_width and 1 <= patch_height <= grid_height):
         print("Patch dimensions must be positive integers within the grid dimensions.")
@@ -69,7 +69,7 @@ def main():
     base_grid = generate_base_grid(grid_width, grid_height)
     
     # Create 'layouts' directory if it doesn't exist
-    output_dir = 'layouts'
+    output_dir = 'layouts'+str(grid_width)+'x'+str(grid_height)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     
